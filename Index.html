@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-light justify-content-center"s>
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br/>
+   <div class="contanair">
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <form method="post" name="frm" onsubmit="frmsub(event)" >
+                
+                    <div class="form-group">
+                        <label for="email">Name:</label>
+                        <input type="text" class="form-control" name="nm" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" name="eid" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" name="pass" id="pwd">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="sub">Submit</button>
+                </form>
+            
+
+    </div>
+
+   <table class="table text-center" >
+
+    <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="result">
+
+  </tbody>
+</table>
+</div>
+
+<script>
+    let arr= [];
+    function frmsub(event){
+        event.preventDefault();
+//   console.log('hello');
+  
+ let name = frm.nm.value;
+ let email = frm.eid.value;
+ let password = frm.pass.value;
+
+
+arr.push({ "uname": name, "uemail": email, "upassword": password })
+//  console.log(arr);
+show();
+frm.reset();
+
+}
+function show(){
+    str = '';
+    arr.forEach((items,index)=>{
+
+        str+= ` 
+              <tr>
+              <td>${items.uname}<td/>
+              <td>${items.uemail}<td/>
+              <td>${items.upassword}<td/>   
+                <td><button class="btn btn-danger"onclick="del(${index})"> Delete <button/><td/>
+                <td><button class="btn btn-info"onclick="edit(${index})">Edit</button></td>    
+              <tr/> `
+    })
+       document.getElementById('result').innerHTML=str;
+       
+}
+show()
+function del(del_id){
+    // console.log(del_id)
+     
+   let newarr = arr.filter((items,index)=>{
+               return del_id != index
+    })
+    console.log(newarr)
+    arr = newarr
+    // arr.push(newarr);
+    
+    show()
+}
+
+let store_id = '';
+function edit(edit_id){
+
+    store_id == edit_id
+
+   let  ediarr = arr.filter((items,index)=>{
+        return  edit_id === index
+        })
+     console.log(editarr);
+     
+            document.getElementById('name').value = newEditarr[0].uname
+            document.getElementById('email').value = newEditarr[0].uemail
+            document.getElementById('pwd').value = newEditarr[0].upassword
+            show()
+
+}
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
